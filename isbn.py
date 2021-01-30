@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Tuple
+from typing import List, Tuple
 
 def _cast_str_to_int_array(string: str) -> List[int]:
     int_array = []
@@ -7,7 +7,6 @@ def _cast_str_to_int_array(string: str) -> List[int]:
             int_array.append(10)
         else:
             int_array.append(int(value))
-
     return int_array
 
 def _cast_int_array_to_str(int_array: List[int]) -> str:
@@ -53,7 +52,6 @@ def _calc_isbn_10_check_digit(isbn_array: List[int]) -> int:
 
 def validate_isbn(isbn: str) -> bool:
     isbn_array = _cast_str_to_int_array(isbn)
-
     if len(isbn_array) == 13:
         return _validate_isbn_13(isbn_array)
     elif len(isbn_array) == 10:
@@ -72,7 +70,6 @@ def convert_isbn_13_to_10(isbn: str) -> str:
     isbn_array = _cast_str_to_int_array(isbn)
     if isbn_array[0:3] != [9, 7, 8]:
         return None
-    
     del isbn_array[-1]
     isbn_array = isbn_array[3:]
     isbn_array = isbn_array + [_calc_isbn_10_check_digit(isbn_array)]
