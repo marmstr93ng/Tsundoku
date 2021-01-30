@@ -1,0 +1,13 @@
+# Ignore files for git
+
+# Python Compiler files
+*.pyc
+
+# Virtualenv
+venv/
+
+# Logging
+*.log
+
+# Tools
+.vscode/
