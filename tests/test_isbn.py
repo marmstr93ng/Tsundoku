@@ -5,14 +5,14 @@ import pytest
 from isbn import validate_isbn, convert_isbn_10_to_13, convert_isbn_13_to_10
 
 @pytest.mark.parametrize("isbn, expected_result, test_info", [
-    ("9781444165159", True, "Valid ISBN 13"), 
-    ("1888799978", True, "Valid ISBN 10"),
-    ("9781444165155", False, "Wrong ISBN 13 check digit"),
-    ("1888799975", False, "Wrong ISBN 10 check digit"),
-    ("14441651", False, "Wrong length"),
-    ("9781444165A59", False, "Invalid char"),
-    ("123456789X", True, "Valid ISBN 10 with X as check digit"),
-    ("188X799978", False, "Invalid X char"),
+    ("9781444165159", (True,""), "Valid ISBN 13"), 
+    ("1888799978", (True,""), "Valid ISBN 10"),
+    ("9781444165155", (False,"Invalid ISBN"), "Wrong ISBN 13 check digit"),
+    ("1888799975", (False,"Invalid ISBN"), "Wrong ISBN 10 check digit"),
+    ("14441651", (False,"Invalid Length"), "Wrong length"),
+    ("9781444165A59", (False,"Invalid Character"), "Invalid char"),
+    ("123456789X", (True,""), "Valid ISBN 10 with X as check digit"),
+    ("188X799978", (False,"Invalid Character"), "Invalid X char"),
 ])
 
 def test_validate_isbn(isbn, expected_result, test_info):
@@ -37,15 +37,4 @@ def test_convert_isbn_10_to_13(isbn_10, isbn_13):
 
 def test_convert_isbn_13_to_10(isbn_13, isbn_10):
    assert convert_isbn_13_to_10(isbn_13) == isbn_10
-
-# google_books_data
-# def test_google_books_data():
-#     results = google_books_data("0716020882")
-#     match = False
-#     print(type(results))
-#     #if isinstance(results, Response)
-#     for result in results['items']:
-#         if result['volumeInfo']['title'] == "The Right Way to Play Chess":
-#             match = True
-#     assert match
 

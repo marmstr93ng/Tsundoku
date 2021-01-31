@@ -1,5 +1,6 @@
 from typing import List, Tuple
 
+
 def _cast_str_to_int_array(string: str) -> List[int]:
     int_array = []
     for value in string:
@@ -34,13 +35,24 @@ def _isbn_10_weighted_sum(isbn_array: List[int]) -> int:
         sum_digits += (digit * (10 - index))
     return sum_digits
 
-def _validate_isbn_13(isbn_array: List[int]) -> bool:
+def _check_isbn_chars(isbn: str) -> bool:
+    char_check_isbn = isbn[0:-1] if isbn[-1].upper() == "X" else isbn
+    return True if char_check_isbn.isnumeric() else False
+
+def _check_isbn_length(isbn: str) -> bool:
+    return True if (len(isbn) == 13) or (len(isbn) == 10) else False
+
+def _check_isbn_13_valid(isbn_array: List[int]) -> bool:
     sum_evens, sum_odds = _isbn_13_weighted_sum(isbn_array)
     return ((sum_evens + sum_odds) % 10) == 0
 
-def _validate_isbn_10(isbn_array: List[int]) -> bool:
+def _check_isbn_10_valid(isbn_array: List[int]) -> bool:
     sum_digits = _isbn_10_weighted_sum(isbn_array)
     return (sum_digits % 11) == 0
+
+def _check_isbn_valid(isbn: str) -> bool:
+    isbn_array = _cast_str_to_int_array(isbn)
+    return _check_isbn_13_valid(isbn_array) if len(isbn) == 13 else _check_isbn_10_valid(isbn_array)
 
 def _calc_isbn_13_check_digit(isbn_array: List[int]) -> int:
     sum_evens, sum_odds = _isbn_13_weighted_sum(isbn_array)  
@@ -50,19 +62,17 @@ def _calc_isbn_10_check_digit(isbn_array: List[int]) -> int:
     sum_digits = _isbn_10_weighted_sum(isbn_array)
     return (11 - (sum_digits % 11))
 
-def validate_isbn(isbn: str) -> bool:
-    char_check_isbn = isbn[0:-1] if isbn[-1].upper() == "X" else isbn
-    if not char_check_isbn.isnumeric():
-        return False
+def validate_isbn(isbn: str) -> Tuple[bool, str]:
+    if not _check_isbn_chars(isbn):
+        return False, "Invalid Character"
 
-    isbn_array = _cast_str_to_int_array(isbn)
+    if not _check_isbn_length(isbn):
+        return False, "Invalid Length"
 
-    if len(isbn_array) == 13:
-        return _validate_isbn_13(isbn_array)
-    elif len(isbn_array) == 10:
-        return _validate_isbn_10(isbn_array)
-    else:
-        return False
+    if not _check_isbn_valid(isbn):
+        return False, "Invalid ISBN"
+    
+    return True, ""
 
 def convert_isbn_10_to_13(isbn: str) -> str:
     isbn_array = _cast_str_to_int_array(isbn)
