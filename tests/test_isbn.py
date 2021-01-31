@@ -9,9 +9,10 @@ from isbn import validate_isbn, convert_isbn_10_to_13, convert_isbn_13_to_10
     ("1888799978", True, "Valid ISBN 10"),
     ("9781444165155", False, "Wrong ISBN 13 check digit"),
     ("1888799975", False, "Wrong ISBN 10 check digit"),
-    ("1444165159", False, "Wrong length"),
-    ("9781444165A59", False, "Invalid Char"),
+    ("14441651", False, "Wrong length"),
+    ("9781444165A59", False, "Invalid char"),
     ("123456789X", True, "Valid ISBN 10 with X as check digit"),
+    ("188X799978", False, "Invalid X char"),
 ])
 
 def test_validate_isbn(isbn, expected_result, test_info):

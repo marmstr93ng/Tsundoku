@@ -4,9 +4,12 @@ Lightweight library application
 ## TODO
 * google_books_data unit testing
 
+* validate length
+* validate invalid char entry
+* validate incorrect digits
+
 * move ISBN to class - validated, both ISBN types available as attribute
-* validation with alphabet in ISBN - must be before casting
-* Add error message with validation failure - wrong length, incorrect digits(check digit not correct), invalid char entry
+* Add error message with validation failure
 
 
 ## IDEAS

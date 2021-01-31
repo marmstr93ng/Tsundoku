@@ -51,7 +51,12 @@ def _calc_isbn_10_check_digit(isbn_array: List[int]) -> int:
     return (11 - (sum_digits % 11))
 
 def validate_isbn(isbn: str) -> bool:
+    char_check_isbn = isbn[0:-1] if isbn[-1].upper() == "X" else isbn
+    if not char_check_isbn.isnumeric():
+        return False
+
     isbn_array = _cast_str_to_int_array(isbn)
+
     if len(isbn_array) == 13:
         return _validate_isbn_13(isbn_array)
     elif len(isbn_array) == 10:
