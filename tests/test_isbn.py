@@ -1,8 +1,5 @@
-import sys
-sys.path.insert(0, '../')
-
 import pytest
-from isbn import validate_isbn, convert_isbn_10_to_13, convert_isbn_13_to_10
+from src.isbn import validate_isbn, convert_isbn_10_to_13, convert_isbn_13_to_10
 
 @pytest.mark.parametrize("isbn, expected_result, test_info", [
     ("9781444165159", (True,""), "Valid ISBN 13"), 
