@@ -13,7 +13,6 @@ from src.isbn import validate_isbn, convert_isbn_10_to_13, convert_isbn_13_to_10
 ])
 
 def test_validate_isbn(isbn, expected_result, test_info):
-    print(test_info)
     assert validate_isbn(isbn) == expected_result
 
 @pytest.mark.parametrize("isbn_10, isbn_13", [

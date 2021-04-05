@@ -89,7 +89,3 @@ def convert_isbn_13_to_10(isbn: str) -> str:
     isbn_array = isbn_array[3:]
     isbn_array = isbn_array + [_calc_isbn_10_check_digit(isbn_array)]
     return _cast_int_array_to_str(isbn_array)
-
-
-if __name__ == '__main__':
-    pass
