@@ -1,7 +1,7 @@
 import pytest
-from src.google_books import API
+from src.google_books import GoogleBooks
 
-api = API()
+google_books = GoogleBooks()
 
 @pytest.mark.parametrize("isbn, expected_result, test_info", [
     ("9781444165159", False, "Valid ISBN 13"), 
@@ -16,7 +16,7 @@ api = API()
 
 def test_no_exception(isbn, expected_result, test_info):
     try:
-        json_data = api.search(isbn)
+        json_data = google_books.search(isbn)
     except Exception as exc:
         assert False, "Exception raise - {}".format(exc)
     

@@ -2,7 +2,7 @@ import requests
 import json
 from typing import Dict, Any
 
-class API(object):
+class GoogleBooks(object):
     """See: https://developers.google.com/books/docs/v1/using#WorkingVolumes"""
 
     def __init__(self):
