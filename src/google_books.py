@@ -8,9 +8,9 @@ class GoogleBooks(object):
     def __init__(self):
         self._base_url = "https://www.googleapis.com/books/v1"
     
-    def search(self, search_term: str) -> Dict[str, Any]:
+    def search(self, search_term: str, max_results: int = 1) -> Dict[str, Any]:
         path = "/volumes"
-        resp = requests.get(self._base_url+path, params={"q" : search_term})
+        resp = requests.get(self._base_url+path, params={"q" : search_term, "maxResults" : max_results})
         if self._resp_check(resp):
             return json.loads(resp.content)
     
