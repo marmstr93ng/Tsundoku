@@ -17,7 +17,7 @@ google_books = GoogleBooks()
 def test_no_exception(isbn, expected_result, test_info):
     try:
         json_data = google_books.search(isbn)
-    except Exception as exc:
-        assert False, "Exception raise - {}".format(exc)
+    except Exception as e:
+        assert False, "Exception raise - {}".format(e)
     
     assert (json_data["totalItems"] == 0) == expected_result
