@@ -13,7 +13,7 @@ def main():
         try:
             json_data = google_books.search(isbn)
         except Exception as e:
-            print(e)
+            logging.info(e)
         logging.debug("\n{}".format(json.dumps(json_data, indent=4)))
 
 if __name__ == '__main__':
