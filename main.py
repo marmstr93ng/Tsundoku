@@ -13,16 +13,18 @@ def main():
     logging.info("Validating ISBN:{}".format(isbn))
     valid_isbn_result_bool, valid_isbn_result_str = validate_isbn(isbn)
 
-    if valid_isbn_result_bool:
+
+    if not valid_isbn_result_bool:
+        logging.error("\t{}".format(valid_isbn_result_str))
+    else:
         logging.info("\t{}".format(valid_isbn_result_str))
+
+        logging.info("Retrieving Google Books information for ISBN:{}".format(isbn))
         try:
-            logging.info("Retrieving Google Books information for ISBN:{}".format(isbn))
             json_data = google_books.search(isbn)
         except Exception as e:
             logging.info(e)
         logging.debug("\n{}".format(json.dumps(json_data, indent=4)))
-    else:
-        logging.error("\t{}".format(valid_isbn_result_str))
 
 if __name__ == '__main__':
     main()
