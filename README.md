@@ -1,4 +1,4 @@
-# Tsundoku
+# Tsundoku (積ん読)
 Lightweight library application
 
 ## Setup
@@ -6,17 +6,28 @@ Lightweight library application
 
 ## TODO
 * Parse google book results
-* Display total number of items found, json_data["totalItems"]
-* Display search results
+    * Select the correct item (ISBN of volumeInfo)
+    * Extract data
+        * ISBN_13
+        * Title
+        * Subtitle
+        * Authors
+        * Publisher
+        * Publish Date
+        * Description
+        * Page Count
+        * Thumbnail
+        * Categories
+        * Language
+* Store data in database
+* Data entry functions
+* Gui viewer
+
+JSON > Object > Database
 
 ## IDEAS
 * Personal Book Report - One thing learned
 * Read status
 * Num books read tracking
 * Books not in library but read also tracked
-
-api = API()
-try:
-    json_data = api.search("14441651")
-except Exception as e:
-    print(e)
+* Book wishlist
