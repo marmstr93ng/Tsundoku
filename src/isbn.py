@@ -1,6 +1,5 @@
 from typing import List, Tuple
 
-
 def _cast_str_to_int_array(string: str) -> List[int]:
     int_array = []
     for value in string:
@@ -72,7 +71,7 @@ def validate_isbn(isbn: str) -> Tuple[bool, str]:
     if not _check_isbn_valid(isbn):
         return False, "Invalid ISBN"
     
-    return True, ""
+    return True, "Valid ISBN"
 
 def convert_isbn_10_to_13(isbn: str) -> str:
     isbn_array = _cast_str_to_int_array(isbn)

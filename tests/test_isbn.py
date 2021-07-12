@@ -2,13 +2,13 @@ import pytest
 from src.isbn import validate_isbn, convert_isbn_10_to_13, convert_isbn_13_to_10
 
 @pytest.mark.parametrize("isbn, expected_result, test_info", [
-    ("9781444165159", (True,""), "Valid ISBN 13"), 
-    ("1888799978", (True,""), "Valid ISBN 10"),
+    ("9781444165159", (True,"Valid ISBN"), "Valid ISBN 13"), 
+    ("1888799978", (True,"Valid ISBN"), "Valid ISBN 10"),
     ("9781444165155", (False,"Invalid ISBN"), "Wrong ISBN 13 check digit"),
     ("1888799975", (False,"Invalid ISBN"), "Wrong ISBN 10 check digit"),
     ("14441651", (False,"Invalid Length"), "Wrong length"),
     ("9781444165A59", (False,"Invalid Character"), "Invalid char"),
-    ("123456789X", (True,""), "Valid ISBN 10 with X as check digit"),
+    ("123456789X", (True,"Valid ISBN"), "Valid ISBN 10 with X as check digit"),
     ("188X799978", (False,"Invalid Character"), "Invalid X char"),
 ])
 
