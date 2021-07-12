@@ -13,7 +13,6 @@ def main():
     logging.info("Validating ISBN:{}".format(isbn))
     valid_isbn_result_bool, valid_isbn_result_str = validate_isbn(isbn)
 
-
     if not valid_isbn_result_bool:
         logging.error("\t{}".format(valid_isbn_result_str))
     else:
